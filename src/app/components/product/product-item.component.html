@@ -1,0 +1,22 @@
+@if(product) {
+	@if (isLoading) {
+		<p class="loading">Loading...</p>
+	} @else {
+		<img [src]="product.image"
+		[alt]="product.name"
+		class="product-image"
+		(click)="navigateToDetails(product.id)">
+	}
+	<div class="product-info">
+		<h3>{{ product.name }}</h3>
+		<p class="product-description">{{ product.description }}</p>
+		<s><div class="product-price">{{ product.price | currency }}</div></s>
+		<div class="product-price">{{ product.price | promo }}</div>
+		<button class="add-to-cart-btn" (click)="addToCart.emit(product)">Add to Cart</button>
+		<button class="view-details-btn" (click)="deleteProduct.emit(product.id)">Delete</button>
+		<button class="view-details-btn" (click)="editProduct.emit(product.id)">Edit</button>
+
+	</div>
+} @else {
+	<p class="no-product">Product not available</p>
+}
