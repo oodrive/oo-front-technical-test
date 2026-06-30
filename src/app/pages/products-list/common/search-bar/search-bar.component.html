@@ -1,0 +1,15 @@
+<div class="search-container">
+	<input
+		type="text"
+		class="search-input"
+		placeholder="Search products..."
+		[formControl]="searchTerm"
+	/>
+	@if (searchTerm) {
+		<span class="search-term">{{searchTerm.value}}</span>
+	}
+	<div class="button-group">
+		<button class="btn btn-primary" (click)="search()">Search</button>
+		<button class="btn btn-secondary" (click)="reset()">Reset</button>
+	</div>
+</div>

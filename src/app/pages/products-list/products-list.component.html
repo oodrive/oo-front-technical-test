@@ -1,0 +1,42 @@
+<div class="products-container">
+	<h2>Product List</h2>
+
+	<!-- TODO: A reusable SearchBarComponent exists in common/search-bar/ -->
+	<div class="search-container">
+		<input
+			type="text"
+			class="search-input"
+			placeholder="Search products..."
+			[(ngModel)]="searchTerm"
+			(input)="onSearch()"
+		/>
+		<div class="button-group">
+			<button class="btn btn-primary" (click)="onSearch()">Search</button>
+			<button class="btn btn-secondary" (click)="resetSearch()">Reset</button>
+		</div>
+	</div>
+
+	<label>
+		<input type="checkbox" [(ngModel)]="showOutOfStock"> Show out of stock
+	</label>
+
+	<button
+		class="btn btn-primary"
+		(click)="addNewProduct()"
+	>
+		Add New Product
+	</button>
+
+	<div class="product-grid">
+		<div class="product-card" *ngFor="let product of products">
+			<app-product
+				*ngIf="showOutOfStock || product.price > 0"
+				[product]="product"
+				[isLoading]="isLoading"
+				(addToCart)="addToCart(product)"
+				(editProduct)="editProduct($event)"
+				(deleteProduct)="deleteProduct($event)"
+			></app-product>
+		</div>
+	</div>
+</div>

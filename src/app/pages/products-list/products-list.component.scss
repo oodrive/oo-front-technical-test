@@ -1,0 +1,133 @@
+// Variables
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$text-color: #333;
+$border-color: #e0e0e0;
+$shadow-light: rgba(0, 0, 0, 0.1);
+$shadow-medium: rgba(0, 0, 0, 0.2);
+$shadow-primary: rgba(0, 123, 255, 0.3);
+$shadow-primary-light: rgba(0, 123, 255, 0.2);
+
+// Mixins
+@mixin button-base {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	text-decoration: none;
+	display: inline-block;
+}
+
+@mixin card-hover {
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 4px 8px $shadow-medium;
+	}
+}
+
+@mixin visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+// Main container
+.products-container {
+	padding: 20px;
+	max-width: 1200px;
+	margin: 0 auto;
+
+	h2 {
+		text-align: center;
+		margin-bottom: 30px;
+		color: $text-color;
+		font-size: 2rem;
+	}
+}
+
+// Header section with search and button
+.products-container > app-search-bar + .btn {
+	float: right;
+	margin-top: 10px;
+}
+
+// Button styles
+.btn {
+	@include button-base;
+
+	&.btn-primary {
+		background-color: $primary-color;
+		color: white;
+
+		&:hover {
+			background-color: $primary-hover;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 8px $shadow-primary;
+		}
+
+		&:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 4px $shadow-primary-light;
+		}
+	}
+}
+
+// Product grid
+.product-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+	padding: 20px 0;
+	clear: both; // Clear the floating button
+}
+
+// Product card
+.product-card {
+	border: 1px solid $border-color;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px $shadow-light;
+	@include card-hover;
+}
+
+// Loader
+.loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px;
+	min-height: 200px;
+
+	.spinner-border {
+		width: 3rem;
+		height: 3rem;
+		border: 0.25em solid currentColor;
+		border-right-color: transparent;
+		border-radius: 50%;
+		animation: spinner-rotation 0.75s linear infinite;
+	}
+
+	.visually-hidden {
+		@include visually-hidden;
+	}
+}
+
+// Animation
+@keyframes spinner-rotation {
+	to {
+		transform: rotate(360deg);
+	}
+}
