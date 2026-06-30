@@ -1,0 +1,14 @@
+/node_modules
+/ooconfig.dev.*
+/npm-debug.log
+/karma_reports
+/build
+/jest_reports
+/bin
+/temp
+/.angular
+/.vscode/*
+
+# System Files
+.DS_Store
+desktop.ini
