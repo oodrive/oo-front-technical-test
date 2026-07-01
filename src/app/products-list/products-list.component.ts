@@ -1,11 +1,12 @@
+import { catchError, EMPTY } from 'rxjs';
+
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, EMPTY } from 'rxjs';
 
-import { ProductItemModule } from '../../components/product/product-item.module';
 import { CartService } from '../../components/cart/cart.service';
+import { ProductItemModule } from '../../components/product/product-item.module';
 import { ProductService } from '../../services/product-service.service';
 
 @Component({
@@ -83,24 +84,6 @@ export class ProductsListComponent implements OnInit {
 	}
 
 	deleteProduct(id: number): void {
-		if (!confirm(`Are you sure you want to delete product with ID ${id}?`)) {
-			return;
-		}
-
-		this.isLoading = true;
-		this.productService.deleteProduct(id)
-			.pipe(
-				catchError(() => {
-					this.isLoading = false;
-					console.error(`Failed to delete product with ID ${id}`);
-					return EMPTY;
-				})
-			)
-			.subscribe((isDeleted: boolean) => {
-				this.isLoading = false;
-				if (isDeleted) {
-					console.log(`Product with ID ${id} deleted successfully`);
-				}
-			});
+		// todo: Implement delete product functionality
 	}
 }
