@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-product',
+	standalone: false,
 	templateUrl: './product-item.component.html',
 	styleUrl: './product-item.component.scss'
 })

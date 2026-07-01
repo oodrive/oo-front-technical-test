@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
 	name: 'promo',
+	standalone: false,
 })
 export class PromoPipe implements PipeTransform {
 
